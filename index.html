@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anny Lin | Brand Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* ── DESIGN TOKENS ───────────────────────────── */
+:root {
+  --blush:       #f5e6e3;
+  --blush-dark:  #ead5d1;
+  --dark:        #241414;
+  --rose:        #c47b78;
+  --rose-dark:   #a05856;
+  --yellow:      #f0c030;
+  --yellow-dark: #d4a828;
+  --white:       #ffffff;
+  --navy:        #1c2040;
+  --navy-mid:    #262c4e;
+  --text-body:   #2a1a1a;
+  --text-muted:  #8a6060;
+  --font-display:'Playfair Display', Georgia, serif;
+  --font-head:   'Oswald', 'Arial Black', sans-serif;
+  --font-body:   'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  height: 100%;
+}
+body {
+  font-family: var(--font-body);
+  background: var(--blush);
+  color: var(--text-body);
+  overflow-x: hidden;
+}
+section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── LANGUAGE TOGGLE ─────────────────────────── */
+.lang-toggle {
+  position: fixed;
+  top: 20px;
+  right: 56px;
+  z-index: 1002;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(245,230,227,0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--blush-dark);
+  border-radius: 24px;
+  padding: 5px 6px;
+  box-shadow: 0 2px 16px rgba(36,20,20,0.10);
+}
+.lang-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 4px 10px;
+  border-radius: 18px;
+  transition: all 0.22s;
+}
+.lang-btn.active {
+  background: var(--rose);
+  color: var(--white);
+  box-shadow: 0 1px 6px rgba(196,123,120,0.35);
+}
+.lang-btn:not(.active):hover { color: var(--rose); }
+
+/* ── PROGRESS BAR ────────────────────────────── */
+.progress-bar {
+  position: fixed; top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--rose), var(--yellow));
+  z-index: 999;
+  transition: width 0.2s;
+}
+
+/* ── NAV DOTS ────────────────────────────────── */
+.nav-dots {
+  position: fixed; right: 20px; top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.nav-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(36,20,20,0.2);
+  border: none; cursor: pointer; transition: all 0.3s;
+}
+.nav-dot.active, .nav-dot:hover {
+  background: var(--rose); transform: scale(1.5);
+}
+
+/* ══════════════════════════════════════════════
+   SECTION 1 — HERO
+══════════════════════════════════════════════ */
+#hero {
+  background: var(--blush);
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px 64px;
+}
+.hero-inner {
+  max-width: 1160px; width: 100%;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 64px; align-items: center;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 3.5px;
+  text-transform: uppercase; color: var(--rose);
+  margin-bottom: 20px; display: block;
+}
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 9vw, 120px);
+  font-weight: 700; color: var(--dark);
+  line-height: 0.92; margin-bottom: 14px;
+}
+.hero-fullname {
+  font-size: 15px; font-weight: 600; letter-spacing: 2px;
+  color: var(--rose); text-transform: uppercase; margin-bottom: 20px;
+}
+.hero-rule {
+  width: 100%; max-width: 460px; height: 1px;
+  background: var(--blush-dark); margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(20px, 2.5vw, 30px);
+  color: var(--rose); margin-bottom: 18px; font-weight: 400;
+}
+.hero-desc { font-size: 15px; color: var(--text-body); line-height: 1.7; margin-bottom: 10px; }
+.hero-tags { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; }
+.hero-contact { font-size: 13px; color: var(--rose); line-height: 1.9; margin-bottom: 40px; }
+.hero-contact a { color: var(--rose); text-decoration: none; }
+.hero-contact a:hover { text-decoration: underline; }
+
+.hero-stats { display: flex; gap: 48px; flex-wrap: wrap; align-items: flex-end; }
+.stat-item { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
+.stat-circle {
+  width: 72px; height: 72px; border-radius: 50%; background: var(--yellow);
+  position: absolute; right: -16px; top: -12px; z-index: 0; opacity: 0.85;
+}
+.stat-number {
+  font-size: 36px; font-weight: 800; color: var(--dark);
+  position: relative; z-index: 1; line-height: 1;
+}
+.stat-label {
+  font-size: 12px; color: var(--rose); font-weight: 500;
+  margin-top: 6px; max-width: 160px; line-height: 1.4;
+  position: relative; z-index: 1;
+}
+
+.hero-photo-wrap { display: flex; align-items: center; justify-content: center; }
+.hero-photo {
+  width: 280px; height: 280px; border-radius: 50%;
+  object-fit: cover; object-position: center top;
+  display: block; border: 3px solid var(--blush-dark);
+}
+
+/* ══════════════════════════════════════════════
+   SECTION 2 — CAREER TIMELINE
+══════════════════════════════════════════════ */
+#timeline {
+  background: var(--blush);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 64px 48px;
+}
+.timeline-header { display: flex; align-items: center; gap: 20px; margin-bottom: 56px; }
+.timeline-deco-circle { width: 56px; height: 56px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+.timeline-title {
+  font-family: var(--font-head); font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700; color: var(--dark); letter-spacing: 2px; text-transform: uppercase;
+}
+.timeline-track { max-width: 1100px; width: 100%; position: relative; }
+.timeline-circles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.tl-col { display: flex; flex-direction: column; align-items: center; }
+.tl-metric-circle {
+  width: 120px; height: 120px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; margin-bottom: 16px; transition: transform 0.3s;
+}
+.tl-metric-circle:hover { transform: scale(1.06); }
+.tl-metric-circle.filled  { background: var(--dark); color: var(--white); }
+.tl-metric-circle.outlined { background: transparent; border: 2.5px solid var(--dark); color: var(--dark); }
+.tl-metric-circle.invisible { background: transparent; border: none; }
+.tl-metric-number { font-size: 22px; font-weight: 800; line-height: 1; display: block; }
+.tl-metric-circle.outlined .tl-metric-label { color: var(--rose); }
+.tl-metric-circle.filled  .tl-metric-label { color: rgba(255,255,255,0.8); }
+.tl-metric-label { font-size: 11px; font-weight: 500; line-height: 1.3; margin-top: 4px; padding: 0 8px; }
+
+.timeline-line-row {
+  position: relative; height: 28px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.timeline-axis {
+  position: absolute; top: 50%; left: 4%; right: 0;
+  height: 2px; background: var(--dark); transform: translateY(-50%);
+}
+.timeline-axis::after {
+  content: ''; position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+  border-left: 12px solid var(--dark); border-top: 6px solid transparent; border-bottom: 6px solid transparent;
+}
+.tl-dot-wrap { display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+.tl-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--dark); }
+
+.timeline-content-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; }
+.tl-entry { padding: 8px 8px 0; }
+.tl-year { font-family: var(--font-display); font-style: italic; font-size: 13px; color: var(--rose); margin-bottom: 6px; display: block; }
+.tl-company { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 4px; line-height: 1.3; }
+.tl-role { font-family: var(--font-display); font-style: italic; font-size: 13px; color: var(--rose); margin-bottom: 10px; display: block; }
+.tl-rule { width: 40px; height: 1px; background: var(--blush-dark); margin-bottom: 10px; }
+.tl-skills { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.tl-skills li { font-size: 12.5px; color: var(--text-body); line-height: 1.5; padding-left: 14px; position: relative; }
+.tl-skills li::before { content: '•'; position: absolute; left: 0; color: var(--rose); font-size: 14px; line-height: 1.3; }
+
+/* ══════════════════════════════════════════════
+   SHARED CASE STYLES
+══════════════════════════════════════════════ */
+.case-section { display: flex; align-items: center; justify-content: center; padding: 80px 64px; }
+.case-grid { max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.s-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.s-tag { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; font-weight: 700; }
+.s-year { font-size: 13px; letter-spacing: 2px; }
+.s-title { font-family: var(--font-display); font-size: clamp(24px, 3vw, 38px); line-height: 1.2; margin-bottom: 20px; font-weight: 700; }
+.s-title em { font-style: italic; font-weight: 400; }
+.s-desc { font-size: 15px; line-height: 1.85; margin-bottom: 30px; }
+.s-pillars { display: flex; flex-direction: column; gap: 16px; }
+.s-pillar { display: flex; align-items: flex-start; gap: 14px; }
+.s-pillar-icon { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.s-pillar-text h4 { font-size: 13px; font-weight: 600; letter-spacing: 0.3px; margin-bottom: 4px; }
+.s-pillar-text p { font-size: 13px; line-height: 1.65; }
+
+/* ── Case 1 (dark navy) */
+#case1 { background: var(--navy); }
+#case1 .s-tag   { background: rgba(240,192,48,0.15); color: var(--yellow); border: 1px solid var(--yellow); }
+#case1 .s-year  { color: rgba(255,255,255,0.35); }
+#case1 .s-title { color: var(--white); }
+#case1 .s-title em { color: var(--yellow); }
+#case1 .s-desc  { color: rgba(255,255,255,0.65); }
+#case1 .s-pillar-icon { background: rgba(240,192,48,0.12); border: 1px solid rgba(240,192,48,0.4); }
+#case1 .s-pillar-text h4 { color: var(--yellow); }
+#case1 .s-pillar-text p  { color: rgba(255,255,255,0.6); }
+
+.metric-stack { display: flex; flex-direction: column; gap: 18px; }
+.metric-card { border-radius: 12px; padding: 24px 28px; transition: transform 0.3s; }
+.metric-card:hover { transform: translateX(6px); }
+.metric-card.dark { background: var(--navy-mid); border: 1px solid rgba(240,192,48,0.2); }
+.metric-num { font-family: var(--font-display); font-size: 46px; font-weight: 700; line-height: 1; display: block; margin-bottom: 6px; letter-spacing: -0.5px; }
+.metric-num.compact { font-size: 38px; }
+.metric-card.dark .metric-num { color: var(--yellow); }
+.metric-lbl { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 8px; }
+.metric-card.dark .metric-lbl { color: rgba(255,255,255,0.45); }
+.metric-note { font-size: 13px; line-height: 1.6; }
+.metric-card.dark .metric-note { color: rgba(255,255,255,0.4); }
+.metric-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-top: 12px; overflow: hidden; }
+.metric-bar-fill { height: 100%; border-radius: 2px; width: 0; transition: width 1.4s ease; }
+.metric-bar-fill.yellow { background: linear-gradient(90deg, var(--yellow), #f7d866); }
+.metric-bar-fill.rose   { background: linear-gradient(90deg, var(--rose), #d89693); }
+
+/* ── Case 2 (blush) */
+#case2 { background: var(--blush); position: relative; }
+.case2-wordmark { display: block; width: 100%; max-width: 100%; opacity: 0.38; pointer-events: none; margin: 0 0 18px; filter: none; }
+@media (max-width: 900px) { .case2-wordmark { width: 55%; margin: 0 auto 16px; } }
+#case2 .s-tag   { background: rgba(196,123,120,0.12); color: var(--rose-dark); border: 1px solid var(--rose); }
+#case2 .s-year  { color: var(--text-muted); }
+#case2 .s-title { color: var(--dark); }
+#case2 .s-title em { color: var(--rose); }
+#case2 .s-desc  { color: var(--text-body); opacity: 0.8; }
+#case2 .s-pillar-icon { background: rgba(196,123,120,0.1); border: 1px solid var(--rose); }
+#case2 .s-pillar-text h4 { color: var(--rose-dark); }
+#case2 .s-pillar-text p  { color: var(--text-body); opacity: 0.75; }
+
+.case2-cards-wrap { position: relative; }
+.campaign-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cb { border-radius: 12px; padding: 22px 20px; transition: transform 0.3s; }
+.cb:hover { transform: translateY(-4px); }
+.cb.dark     { background: var(--dark); color: var(--white); }
+.cb.rose-bg  { background: var(--rose); color: var(--white); }
+.cb.outline  { background: transparent; border: 1.5px solid var(--blush-dark); color: var(--dark); }
+.cb.full     { grid-column: span 2; }
+.cb.yellow-bg{ background: var(--yellow); color: var(--dark); }
+.cb-icon  { font-size: 26px; margin-bottom: 10px; display: block; }
+.cb-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 6px; opacity: 0.6; }
+.cb-value { font-family: var(--font-display); font-size: 28px; font-weight: 700; line-height: 1; display: block; }
+.cb-desc  { font-size: 12.5px; line-height: 1.65; margin-top: 8px; opacity: 0.75; }
+
+/* ── Case 3 (navy-mid) */
+#case3 { background: var(--navy-mid); }
+#case3 .s-tag   { background: rgba(196,123,120,0.15); color: #d4968e; border: 1px solid var(--rose); }
+#case3 .s-year  { color: rgba(255,255,255,0.3); }
+#case3 .s-title { color: var(--white); }
+#case3 .s-title em { color: var(--rose); }
+#case3 .s-desc  { color: rgba(255,255,255,0.65); }
+#case3 .s-pillar-icon { background: rgba(196,123,120,0.12); border: 1px solid rgba(196,123,120,0.4); }
+#case3 .s-pillar-text h4 { color: #d4968e; }
+#case3 .s-pillar-text p  { color: rgba(255,255,255,0.6); }
+
+.funnel-visual { display: flex; flex-direction: column; gap: 12px; }
+.funnel-stage { border-radius: 8px; padding: 15px 22px; display: flex; justify-content: space-between; align-items: center; transition: transform 0.3s; }
+.funnel-stage:hover { transform: translateX(-5px); }
+.funnel-stage.aw { background: rgba(240,192,48,0.15); border: 1px solid rgba(240,192,48,0.4); }
+.funnel-stage.co { background: rgba(196,123,120,0.15); border: 1px solid rgba(196,123,120,0.4); margin: 0 16px; }
+.funnel-stage.ac { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); margin: 0 32px; }
+.funnel-name   { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+.funnel-stage.aw .funnel-name { color: var(--yellow); }
+.funnel-stage.co .funnel-name { color: #d4968e; }
+.funnel-stage.ac .funnel-name { color: rgba(255,255,255,0.45); }
+.funnel-detail { font-size: 12px; color: rgba(255,255,255,0.6); text-align: right; max-width: 190px; line-height: 1.5; }
+.funnel-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 4px; }
+.kol-insight-metric { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+.kol-insight-metric .kol-stat-num { font-size: 30px; }
+.funnel-res-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 16px 18px; }
+.funnel-res-num { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--yellow); display: block; line-height: 1; }
+.funnel-res-lbl { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; margin-top: 5px; display: block; line-height: 1.4; }
+.funnel-budget-note { background: rgba(240,192,48,0.08); border: 1px solid rgba(240,192,48,0.25); border-radius: 8px; padding: 14px 18px; }
+.funnel-budget-note p { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.7; }
+.funnel-budget-note strong { color: var(--yellow); font-weight: 600; }
+.kol-insight { background: rgba(196,123,120,0.08); border: 1px solid rgba(196,123,120,0.3); border-radius: 8px; padding: 16px 18px; margin-top: 10px; }
+.funnel-res-card.kol-card { background: rgba(196,123,120,0.12); border: 1px solid rgba(196,123,120,0.35); }
+.funnel-res-card.kol-card .funnel-res-num { color: #d4968e; }
+.kol-insight-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #d4968e; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 7px; }
+.kol-insight-title::before { content: '🛒'; font-size: 13px; }
+.kol-insight-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+.kol-stat { text-align: center; }
+.kol-stat-num { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #d4968e; display: block; line-height: 1; }
+.kol-stat-lbl { font-size: 10.5px; color: rgba(255,255,255,0.5); line-height: 1.4; display: block; margin-top: 4px; }
+.kol-insight-desc { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.7; border-top: 1px solid rgba(196,123,120,0.2); padding-top: 10px; }
+
+/* ══════════════════════════════════════════════
+   SECTION 6 — TESTIMONIAL
+══════════════════════════════════════════════ */
+#testimonials {
+  background: var(--blush);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 80px 64px;
+}
+.testimonial-wrap { max-width: 760px; width: 100%; }
+.test-eyebrow { text-align: center; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--rose); display: block; margin-bottom: 12px; }
+.test-section-title { font-family: var(--font-display); font-size: clamp(28px, 4vw, 46px); font-weight: 700; color: var(--dark); text-align: center; margin-bottom: 56px; }
+.test-section-title em { color: var(--rose); font-style: italic; }
+.quote-card { background: var(--white); border-radius: 16px; padding: 52px 52px 44px; position: relative; box-shadow: 0 6px 32px rgba(36,20,20,0.08); }
+.quote-mark { font-family: var(--font-display); font-size: 120px; color: var(--yellow); line-height: 0.6; position: absolute; top: 32px; left: 40px; user-select: none; opacity: 0.5; }
+.quote-text { font-family: var(--font-display); font-size: clamp(18px, 2.2vw, 26px); font-style: italic; color: var(--dark); line-height: 1.65; position: relative; z-index: 1; margin-bottom: 36px; padding-top: 40px; }
+.quote-rule { width: 48px; height: 2px; background: var(--rose); margin-bottom: 20px; }
+.quote-attribution { display: flex; align-items: center; gap: 16px; }
+.quote-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--rose), var(--yellow)); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; color: var(--white); font-family: var(--font-display); flex-shrink: 0; }
+.quote-who strong { display: block; font-size: 14px; font-weight: 600; color: var(--dark); }
+.quote-who span { font-size: 13px; color: var(--text-muted); }
+
+/* ══════════════════════════════════════════════
+   SECTION 7 — CTA
+══════════════════════════════════════════════ */
+#cta {
+  background: var(--dark);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 80px 64px; text-align: center;
+}
+.cta-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--rose); margin-bottom: 20px; }
+.cta-heading { font-family: var(--font-display); font-size: clamp(32px, 5vw, 58px); color: var(--white); font-weight: 700; line-height: 1.15; max-width: 680px; margin-bottom: 24px; }
+.cta-heading em { color: var(--yellow); font-style: italic; font-weight: 400; }
+.cta-sub { font-size: 16px; color: rgba(255,255,255,0.5); max-width: 500px; line-height: 1.8; margin-bottom: 48px; }
+.cta-btn { display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(--rose), #d4968e); color: var(--white); text-decoration: none; padding: 18px 52px; border-radius: 50px; font-size: 15px; font-weight: 600; letter-spacing: 1px; transition: all 0.3s; box-shadow: 0 8px 32px rgba(196,123,120,0.35); }
+.cta-btn:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(196,123,120,0.5); background: linear-gradient(135deg, var(--rose-dark), var(--rose)); }
+.cta-divider { width: 1px; height: 56px; background: rgba(255,255,255,0.1); margin: 48px auto; }
+.cta-closing { font-family: var(--font-display); font-style: italic; font-size: clamp(16px, 2vw, 22px); color: rgba(255,255,255,0.5); max-width: 620px; line-height: 1.85; }
+.cta-closing strong { color: var(--yellow); font-style: normal; }
+.cta-closing .cta-em { color: var(--yellow); font-style: italic; font-weight: 500; }
+.cta-footer { margin-top: 56px; font-size: 11px; color: rgba(255,255,255,0.18); letter-spacing: 2px; text-transform: uppercase; }
+
+.hero-cta-btns { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+.hero-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 50px; font-size: 13px; font-weight: 600; letter-spacing: 0.8px; text-decoration: none; transition: all 0.25s; }
+.hero-btn-primary { background: var(--rose); color: var(--white); box-shadow: 0 4px 16px rgba(196,123,120,0.3); }
+.hero-btn-primary:hover { background: var(--rose-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,123,120,0.4); }
+.hero-btn-outline { background: transparent; color: var(--rose); border: 1.5px solid var(--rose); }
+.hero-btn-outline:hover { background: rgba(196,123,120,0.08); transform: translateY(-2px); }
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner, .case-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-photo { width: 200px; height: 200px; }
+  .timeline-circles, .timeline-content-row, .timeline-line-row { grid-template-columns: repeat(2, 1fr); }
+  .timeline-axis { display: none; }
+  .campaign-blocks { grid-template-columns: 1fr; }
+  .cb.full { grid-column: span 1; }
+  html { scroll-snap-type: none; }
+  .lang-toggle { right: 40px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn"        id="btn-zh" onclick="setLang('zh')">中文</button>
+</div>
+
+<nav class="nav-dots">
+  <button class="nav-dot active" onclick="goTo(0)"></button>
+  <button class="nav-dot" onclick="goTo(1)"></button>
+  <button class="nav-dot" onclick="goTo(2)"></button>
+  <button class="nav-dot" onclick="goTo(3)"></button>
+  <button class="nav-dot" onclick="goTo(4)"></button>
+  <button class="nav-dot" onclick="goTo(5)"></button>
+  <button class="nav-dot" onclick="goTo(6)"></button>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 1 — HERO
+     ✏ Edit text in the translations object
+        at the bottom of this file (i18n.en / i18n.zh)
+══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <span class="hero-eyebrow"   data-i18n="hero.eyebrow"></span>
+      <h1  class="hero-name">Anny</h1>
+      <p   class="hero-fullname">WAN-YING LIN &nbsp;林琬瑩</p>
+      <div class="hero-rule"></div>
+      <p   class="hero-title"      data-i18n="hero.title"></p>
+      <p   class="hero-desc"       data-i18n="hero.desc"></p>
+      <p   class="hero-tags"       data-i18n="hero.tags"></p>
+      <div class="hero-contact">
+        0953-826-676 &nbsp;|&nbsp;
+        <a href="mailto:anny72905891@gmail.com">anny72905891@gmail.com</a><br>
+        <a href="https://linkedin.com/in/annylin0927" target="_blank">
+          🔗 &nbsp;www.linkedin.com/in/annylin0927
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-circle"></div>
+          <span class="stat-number">15+</span>
+          <span class="stat-label" data-i18n="hero.stat1"></span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-circle"></div>
+          <span class="stat-number">+10%</span>
+          <span class="stat-label" data-i18n="hero.stat2"></span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-circle"></div>
+          <span class="stat-number">+200%</span>
+          <span class="stat-label" data-i18n="hero.stat3"></span>
+        </div>
+      </div>
+      <div class="hero-cta-btns">
+        <a class="hero-btn hero-btn-primary" href="mailto:anny72905891@gmail.com">✉&nbsp; Contact Me</a>
+        <a class="hero-btn hero-btn-outline" href="https://linkedin.com/in/annylin0927" target="_blank">🔗&nbsp; LinkedIn</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="Anny_headshot_blush.jpg" alt="Anny Lin"
+           onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\'width:280px;height:280px;border-radius:50%;background:linear-gradient(135deg,var(--rose),var(--yellow));display:flex;align-items:center;justify-content:center;font-size:80px;font-family:var(--font-display);color:white;\'>A</div>'">
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — CAREER TIMELINE
+══════════════════════════════════════════ -->
+<section id="timeline">
+  <div class="timeline-header">
+    <div class="timeline-deco-circle"></div>
+    <h2 class="timeline-title" data-i18n="tl.title"></h2>
+  </div>
+  <div class="timeline-track">
+    <!-- Metric circles -->
+    <div class="timeline-circles">
+      <div class="tl-col">
+        <div class="tl-metric-circle filled">
+          <span class="tl-metric-number">+30%</span>
+          <span class="tl-metric-label" data-i18n="tl.c1"></span>
+        </div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-metric-circle invisible">
+          <span class="tl-metric-number"></span>
+          <span class="tl-metric-label"></span>
+        </div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-metric-circle filled">
+          <span class="tl-metric-number">+200%</span>
+          <span class="tl-metric-label" data-i18n="tl.c3"></span>
+        </div>
+      </div>
+      <div class="tl-col">
+        <div class="tl-metric-circle outlined">
+          <span class="tl-metric-number">+10%</span>
+          <span class="tl-metric-label" data-i18n="tl.c4"></span>
+        </div>
+      </div>
+    </div>
+    <!-- Axis -->
+    <div class="timeline-line-row">
+      <div class="timeline-axis"></div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+    </div>
+    <!-- Company entries -->
+    <div class="timeline-content-row">
+      <div class="tl-entry">
+        <span class="tl-year">2009 – 2013</span>
+        <p class="tl-company">PChome Online</p>
+        <span class="tl-role" data-i18n="tl.role1"></span>
+        <div class="tl-rule"></div>
+        <ul class="tl-skills" data-i18n-list="tl.skills1"></ul>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-year">2013</span>
+        <p class="tl-company">Ogilvy One</p>
+        <span class="tl-role" data-i18n="tl.role2"></span>
+        <div class="tl-rule"></div>
+        <ul class="tl-skills" data-i18n-list="tl.skills2"></ul>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-year">2014 – 2017</span>
+        <p class="tl-company">Maywufa Biopharma</p>
+        <span class="tl-role" data-i18n="tl.role3"></span>
+        <div class="tl-rule"></div>
+        <ul class="tl-skills" data-i18n-list="tl.skills3"></ul>
+      </div>
+      <div class="tl-entry">
+        <span class="tl-year">2018 – 2026</span>
+        <p class="tl-company">Triumph · Ladies蕾黛絲</p>
+        <span class="tl-role" data-i18n="tl.role4"></span>
+        <div class="tl-rule"></div>
+        <ul class="tl-skills" data-i18n-list="tl.skills4"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 — CASE 1: LADIESPORT
+══════════════════════════════════════════ -->
+<section id="case1" class="case-section">
+  <div class="case-grid">
+    <div>
+      <div class="s-eyebrow">
+        <span class="s-tag"  data-i18n="c1.tag"></span>
+        <span class="s-year">2018</span>
+      </div>
+      <h2 class="s-title"   data-i18n="c1.title"></h2>
+      <p  class="s-desc"    data-i18n="c1.desc">主導蕾黛絲運動系列商品上市，因市場漸漸傾向舒適＞機能，藉由此休閒機能商品開發新消費族群。系列商品的角色為站在既有的會員基礎上去服務現有會員的需求，同時藉由休閒運動趨勢新去接觸新客。</p>
+      <div class="s-pillars">
+        <div class="s-pillar">
+          <div class="s-pillar-icon">🎯</div>
+          <div class="s-pillar-text">
+            <h4 data-i18n="c1.p1h"></h4>
+            <p  data-i18n="c1.p1b"></p>
+          </div>
+        </div>
+        <div class="s-pillar">
+          <div class="s-pillar-icon">📡</div>
+          <div class="s-pillar-text">
+            <h4 data-i18n="c1.p2h"></h4>
+            <p  data-i18n="c1.p2b"></p>
+          </div>
+        </div>
+        <div class="s-pillar">
+          <div class="s-pillar-icon">📊</div>
+          <div class="s-pillar-text">
+            <h4 data-i18n="c1.p3h"></h4>
+            <p  data-i18n="c1.p3b"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="metric-stack">
+      <div class="metric-card dark">
+        <span class="metric-num">41%</span>
+        <span class="metric-lbl"  data-i18n="c1.m1l"></span>
+        <p    class="metric-note" data-i18n="c1.m1n"></p>
+        <div class="metric-bar"><div class="metric-bar-fill yellow animate-bar" data-width="85"></div></div>
+      </div>
+      <div class="metric-card dark">
+        <span class="metric-num">+18%</span>
+        <span class="metric-lbl"  data-i18n="c1.m2l"></span>
+        <p    class="metric-note" data-i18n="c1.m2n">內衣重訂量年增 +18%，Level 4 商品表現超出所有預期。</p>
+        <div class="metric-bar"><div class="metric-bar-fill rose animate-bar" data-width="65"></div></div>
+      </div>
+      <div class="metric-card dark">
+        <span class="metric-num compact">Win-Win</span>
+        <span class="metric-lbl"  data-i18n="c1.m3l"></span>
+        <p    class="metric-note" data-i18n="c1.m3n"></p>
+        <div class="metric-bar"><div class="metric-bar-fill yellow animate-bar" data-width="72"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 4 — CASE 2: SUMMER WHITE
+══════════════════════════════════════════ -->
+<section id="case2" class="case-section">
+  <div class="case-grid">
+    <div>
+      <div class="s-eyebrow">
+        <span class="s-tag"  data-i18n="c2.tag"></span>
+        <span class="s-year">2024</span>
+      </div>
+      <h2 class="s-title"   data-i18n="c2.title"></h2>
+      <p  class="s-desc"    data-i18n="c2.desc"></p>
+      <div class="s-pillars">
+        <div class="s-pillar">
+          <div class="s-pillar-icon">🏪</div>
+          <div class="s-pillar-text">
+            <h4 data-i18n="c2.p1h"></h4>
+            <p  data-i18n="c2.p1b">沉浸式零售體驗：商品陳列結合趣味道具、試穿迎賓禮，以及現場抽獎活動，連結品牌與銷售。</p>
+          </div>
+        </div>
+        <div class="s-pillar">
+          <div class="s-pillar-icon">👑</div>
+          <div class="s-pillar-text">
+            <h4 data-i18n="c2.p2h"></h4>
+            <p  data-i18n="c2.p2b"></p>
+          </div>
+        </div>
+        <div class="s-pillar">
+          <div class="s-pillar-icon">📱</div>
+          <div class="s-pillar-text">
+            <h4 data-i18n="c2.p3h"></h4>
+            <p  data-i18n="c2.p3b">結合市場數據——粉絲數一萬左右的 KOL 互動與擴散效果最好，以「Tell Me White」為起點結合趣味口號：#解放性感基因White起來、#white white惹人愛 … 等，讓KOC產出有趣內容，搭配 KOL 為產品背書，運用年輕人語言溝通且影響力高的社群媒體築起社群聲量。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case2-cards-wrap">
+      <img src="summer_white_wordmark.png" alt="2024 Summer Tell Me White" class="case2-wordmark">
+      <div class="campaign-blocks">
+      <div class="cb yellow-bg full">
+        <span class="cb-icon">👑</span>
+        <span class="cb-label" style="color:rgba(36,20,20,0.55)" data-i18n="c2.b4l"></span>
+        <span class="cb-value" style="color:var(--dark)" data-i18n="c2.b4v">8 週銷售冠軍</span>
+        <p    class="cb-desc"  style="color:rgba(36,20,20,0.7)" data-i18n="c2.b4d">Summer White 白色內衣蟬聯正品內衣銷售冠軍 。</p>
+      </div>
+      <div class="cb dark">
+        <span class="cb-icon">💰</span>
+        <span class="cb-label" data-i18n="c2.b1l">預算受限流量超達成</span>
+        <span class="cb-value">+13% YoY</span>
+        <p    class="cb-desc"  data-i18n="c2.b1d">整合線上線下行銷活動,在有線預算內流量超標。</p>
+      </div>
+      <div class="cb rose-bg">
+        <span class="cb-icon">🌟</span>
+        <span class="cb-label" data-i18n="c2.b2l"></span>
+        <span class="cb-value">100+</span>
+        <p    class="cb-desc"  data-i18n="c2.b2d">百位 KOC 微網紅，搭配  Macro KOL，以及影響力社群媒體完整覆蓋金字塔各層。</p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 5 — CASE 3: ANNCAM
+══════════════════════════════════════════ -->
+<section id="case3" class="case-section">
+  <div class="case-grid">
+    <div>
+      <div class="s-eyebrow">
+        <span class="s-tag"  data-i18n="c3.tag"></span>
+        <span class="s-year">2025</span>
+      </div>
+      <h2 class="s-title"   data-i18n="c3.title"></h2>
+      <p  class="s-desc"    data-i18n="c3.desc">主導蕾黛絲明星商品「真水內衣」的 AW25 全漏斗媒體行銷活動。面對集團全球預算縮減，透過將 KV 製作費策略性轉移至媒體投放，在資源受限下實現曝光擴大，達成 3,700 萬次以上觸及與跨平台新客開發。</p>
+      <div class="s-pillars">
+        <div class="s-pillar">
+          <div class="s-pillar-icon">📺</div>
+          <div class="s-pillar-text">
+            <h4 data-i18n="c3.p1h"></h4>
+            <p  data-i18n="c3.p1b">黃金時段節目置入（結合周慶大點首波開打日），搭配 YouTube、Meta 精華影片及媒體廣編稿多平台放大——電視觸及延伸為數位轉換。</p>
+          </div>
+        </div>
+        <div class="s-pillar">
+          <div class="s-pillar-icon">💬</div>
+          <div class="s-pillar-text">
+            <h4 data-i18n="c3.p2h"></h4>
+            <p  data-i18n="c3.p2b"></p>
+          </div>
+        </div>
+        <div class="s-pillar">
+          <div class="s-pillar-icon">🎯</div>
+          <div class="s-pillar-text">
+            <h4 data-i18n="c3.p3h"></h4>
+            <p  data-i18n="c3.p3b"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="funnel-visual">
+        <div class="funnel-stage aw">
+          <span class="funnel-name"   data-i18n="c3.f1n"></span>
+          <span class="funnel-detail" data-i18n="c3.f1d"></span>
+        </div>
+        <div class="funnel-stage co">
+          <span class="funnel-name"   data-i18n="c3.f2n"></span>
+          <span class="funnel-detail" data-i18n="c3.f2d"></span>
+        </div>
+        <div class="funnel-stage ac">
+          <span class="funnel-name"   data-i18n="c3.f3n"></span>
+          <span class="funnel-detail" data-i18n="c3.f3d"></span>
+        </div>
+        <div class="funnel-results">
+          <div class="funnel-res-card">
+            <span class="funnel-res-num">78%</span>
+            <span class="funnel-res-lbl" data-i18n="c3.r1"></span>
+          </div>
+          <div class="funnel-res-card">
+            <span class="funnel-res-num">38.2M</span>
+            <span class="funnel-res-lbl" data-i18n="c3.r3"></span>
+          </div>
+          <div class="funnel-res-card">
+            <span class="funnel-res-num">75%</span>
+            <span class="funnel-res-lbl" data-i18n="c3.r4"></span>
+          </div>
+        </div>
+        <div class="kol-insight">
+          <div class="kol-insight-title" data-i18n="c3.kol.title"></div>
+          <div class="kol-insight-metric">
+            <span class="kol-stat-num">72%</span>
+            <span class="kol-stat-lbl" data-i18n="c3.kol.s1"></span>
+          </div>
+          <p class="kol-insight-desc" data-i18n="c3.kol.desc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 6 — TESTIMONIAL
+══════════════════════════════════════════ -->
+<section id="testimonials">
+  <div class="testimonial-wrap">
+    <span class="test-eyebrow"        data-i18n="t.eyebrow"></span>
+    <h2   class="test-section-title"  data-i18n="t.title"></h2>
+    <div class="quote-card">
+      <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+      <p class="quote-text"    data-i18n="t.quote"></p>
+      <div class="quote-rule"></div>
+      <div class="quote-attribution">
+        <div class="quote-avatar">A</div>
+        <div class="quote-who">
+          <strong>Ariel</strong>
+          <span data-i18n="t.role"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 7 — CTA
+     Button: mailto: opens default email client
+══════════════════════════════════════════ -->
+<section id="cta">
+  <p  class="cta-eyebrow"  data-i18n="cta.eyebrow"></p>
+  <h2 class="cta-heading"  data-i18n="cta.heading"></h2>
+  <p  class="cta-sub"      data-i18n="cta.sub"></p>
+  <a class="cta-btn" href="/cdn-cgi/l/email-protection#09686767703e3b30393c313038496e64686065276a6664">
+    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+    </svg>
+    <span data-i18n="cta.btn"></span>
+  </a>
+  <div class="cta-divider"></div>
+  <p class="cta-closing" data-i18n="cta.closing"></p>
+  <p class="cta-footer"  data-i18n="cta.footer"></p>
+</section>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ════════════════════════════════════════════════════
+   TRANSLATIONS
+   ✏ Edit all visible text below — English in i18n.en,
+     Chinese in i18n.zh. Lists use arrays of strings.
+════════════════════════════════════════════════════ */
+const i18n = {
+
+  en: {
+    /* ── Hero ─────────────────────────────── */
+    'hero.eyebrow': 'Brand Marketing Portfolio',
+    'hero.title':   'Brand &amp; Marketing Professional',
+    'hero.desc':    '15 years of brand marketing experience',
+    'hero.tags':    'Product launches &nbsp;·&nbsp; Integrated marcom &nbsp;·&nbsp; Data-driven campaigns &nbsp;·&nbsp; Learning by leveraging AI capabilities',
+    'hero.stat1':   'Years Experience',
+    'hero.stat2':   'Member growth — Ladies\' brand young demographic',
+    'hero.stat3':   'EC ROI growth in Maywufa',
+
+    /* ── Timeline ─────────────────────────── */
+    'tl.title': 'Career Timeline',
+    'tl.c1': 'Category Sales',
+    'tl.c2': 'Cross-Media',
+    'tl.c3': 'E-Commerce ROI',
+    'tl.c4': 'Young Consumer',
+    'tl.role1': 'Category Manager',
+    'tl.role2': 'Account Executive',
+    'tl.role3': 'Marketing Specialist',
+    'tl.role4': 'Brand Marketing Specialist',
+    'tl.skills1': [
+      'Managed platform ops, promotions &amp; UX optimization',
+      'Vendor SEO, keyword, branding &amp; proprietary brands',
+      'Negotiated ad placements, improved PV &amp; conversions'
+    ],
+    'tl.skills2': [
+      'Executed cross-media ad campaigns, full client lifecycle',
+      'Planning, proposals, timelines &amp; client communication',
+      'Consumer behavior analysis for CRM strategy'
+    ],
+    'tl.skills3': [
+      'Built proprietary EC brand from 0 → 1 — from product development &amp; packaging through marketing ops, repositioning &amp; campaign execution',
+      'Integrated KOL / FB / Google Ads / DSP budgets'
+    ],
+    'tl.skills4': [
+      'Full-funnel GTM strategy &amp; brand campaign leadership',
+      'O2O: digital traffic → in-store conversion &amp; POSM',
+      'Cross-team budget management &amp; media ROI optimization'
+    ],
+
+    /* ── Case 1 ───────────────────────────── */
+    'c1.tag':   'Case Study 01',
+    'c1.title': 'LadieSport: <em>Category Launch &amp; Campaign</em>',
+    'c1.desc':  'Led the launch of Ladies\' sportswear series — as the market gradually shifted toward comfort &gt; performance, this leisure-performance line developed a new consumer segment. The series\' role was to serve existing members\' needs from an established membership base while reaching new customers through the rising leisure-sports trend.',
+    'c1.p1h': 'Strategic Positioning',
+    'c1.p1b': 'Entered the sports bra market with professional segmentation by “breast bounce stability,” reinforcing Ladies\' differentiated positioning as the “breast lingerie expert.” With “Step out of your comfort zone for a better body” as the communication anchor, precisely reached urban sporty women aged 25–35 — lifting brand awareness and in-store conversion in tandem.',
+    'c1.p2h': 'First-Time Online-to-Offline Media Integration',
+    'c1.p2b': 'Paid / Own / Earned three-tier media matrix: FB/IG ads, GDN, Yahoo native &amp; keywords. KOLs experienced products and produced authentic in-counter live content; PTT fitness board &amp; FB community word-of-mouth seeding; spokesperson video + offline POSM display — connecting digital exposure to physical purchase O2O.',
+    'c1.p3h': 'Data-Driven Optimisation',
+    'c1.p3b': 'Per-counter STR tracking enabled real-time reallocation of stock and marketing resources across 100+ retail points.',
+    'c1.m1l': 'Sell-Through Rate — Exceeding Target',
+    'c1.m1n': 'STR performance in the first launch window (Apr–Jul), surpassing the internal forecast significantly.',
+    'c1.m2l': 'Bra RQ Growth vs Prior Year',
+    'c1.m2n': 'Bra reorder quantity grew +18% YoY — product performance exceeded all expectations.',
+    'c1.m3l': 'Online ↔ Offline Sales Win-Win',
+    'c1.m3n': 'Combined digital media with offline experience to meet both online and offline sales needs — connecting upper funnel to in-store conversion via O2O.',
+
+    /* ── Case 2 ───────────────────────────── */
+    'c2.tag':   'Case Study 02',
+    'c2.title': 'Summer White: <em>Pop-Up Store &amp; Digital Campaign</em>',
+    'c2.desc':  'Featuring the new non-yellowing material technology, launched a summer white lingerie campaign integrating online and offline activations. Mobilized 100 KOCs online to create a wave of white, dominating IG #SummerWhite while breaking into the younger demographic.',
+    'c2.p1h': 'Pop-Up Store Strategy',
+    'c2.p1b': 'Immersive retail: playful photo props paired with product display, fitting trial gifts, and on-site lucky-draw activations — bridging brand experience and sales conversion.',
+    'c2.p2h': 'KOL Pyramid',
+    'c2.p2b': '4-tier influencer strategy: Super Star → Macro KOL (Heaven Raven) → 100 KOC Micro squad → Hashtag community seeding.',
+    'c2.p3h': 'Social Buzz Engineering',
+    'c2.p3b': 'Market data showed KOLs around 10K followers deliver the best engagement and spread. Anchored on “Tell Me White” with playful hashtag slogans — #解放性感基因White起來 / #white white惹人愛 — paired with persuasive KOLs as product endorsers and high-influence social media that speaks the language of younger audiences.',
+    'c2.b1l': 'Traffic Beat Target',
+    'c2.b1d': 'Integrated online + offline campaign exceeded traffic targets within a constrained budget.',
+    'c2.b2l': 'Influencers',
+    'c2.b2d': '100 KOC influencers paired with Macro KOLs for full pyramid coverage.',
+    'c2.b4l': 'Hero Product',
+    'c2.b4v': '8 Weeks #1',
+    'c2.b4d': 'Summer White lingerie held the No.1 sales position in the genuine lingerie category for 8 consecutive weeks.',
+    'c2.b5l': 'Strategic Insight',
+    'c2.b5d': 'Integrated online + offline campaign delivered <strong>+13% YoY traffic</strong> within a constrained budget. Identified the <strong>Blokette fashion trend</strong> (Blokecore × Coquette) as the cultural hook for the white lingerie campaign — aligning Ladies\' positioning with a viral social moment.',
+
+    /* ── Case 3 ───────────────────────────── */
+    'c3.tag':   'Case Study 03',
+    'c3.title': 'AnnCam Campaign: <em>Full-Funnel Media Mastery</em>',
+    'c3.desc':  'Orchestrated the AW25 full-funnel media campaign for Ladies\' hero product — the Water Bra. Facing a group-wide global budget cut, expanded reach through strategic budget reallocation from production to media, achieving 37M+ impressions and multi-platform new-customer acquisition.',
+    'c3.p1h': 'TV × Digital Integration',
+    'c3.p1b': 'Prime-time TV product placement timed with the anniversary-sale opening day, amplified with highlight videos across YouTube, Meta, and editorial — TV reach extended into digital conversion.',
+    'c3.p2h': '8 KOLs · Authentic Commerce',
+    'c3.p2b': 'IG Reels + Stories + Podcast — combining product storytelling with EC shopping links and offline discount codes for seamless O2O conversion.',
+    'c3.p3h': 'Data-Powered New-Customer Acquisition',
+    'c3.p3b': '91APP retail data + Appier AI + Spectrum DMP + CRM LAL — all audiences excluded existing buyers to maximise new acquisition efficiency.',
+    'c3.f1n': 'Awareness — 43%',
+    'c3.f1d': 'LINE Cross-Screen · TV Placement · TVC Highlight',
+    'c3.f2n': 'Consideration — 26%',
+    'c3.f2d': '8 KOLs · IG Reels + Stories + Podcast',
+    'c3.f3n': 'Action — 32%',
+    'c3.f3d': 'Appier · Spectrum · 91APP RMN · FB/IG LAP',
+    'c3.r1': 'Taiwan Female 25–44 · 1+ Reach',
+    'c3.r2': '25–44 Female 1+ Reach (Taiwan)',
+    'c3.r3': 'LINE Desktop Impressions in 8 hours',
+    'c3.r4': 'KOLs achieved direct sales conversion in the organic traffic phase',
+    'c3.kol.title': 'KOL Group-Buy Commerce',
+    'c3.kol.s1': 'Share of New Customers via EC',
+    'c3.kol.desc': 'KOL group-buy effectively delivered new customers — <strong>72% of EC buyers were first-time</strong>, validating KOL group-buy as a high-efficiency new-customer acquisition channel.',
+    'c3.budget': '<strong>Budget &amp; Timing Strategy:</strong> Despite a -10% global media budget cut, maintained campaign scale by reallocating KV production spend into media placements (effective reduction trimmed to -5%). Traffic exceeded target with +13% YoY, broadcast aligned with the first major counter launch of the Anniversary Sale.',
+
+    /* ── Testimonial ──────────────────────── */
+    't.eyebrow': 'Testimonial',
+    't.title':   'What <em>People Say</em>',
+    't.quote':   'Anny is someone who dares to try and seeks breakthroughs. Thank you for continuously learning and bringing new possibilities to the brand.',
+    't.role':    'Ladies® Brand Manager · Direct Manager at Triumph Group',
+
+    /* ── CTA ──────────────────────────────── */
+    'cta.eyebrow': "Let's Connect",
+    'cta.heading': 'Ready to Build <em>Something Great Together?</em>',
+    'cta.sub':     "Whether you're looking for a brand strategist, a creative problem-solver, or someone who brings both data and intuition to the table — I'd love to talk.",
+    'cta.btn':     'Say Hello — anny72905891@gmail.com',
+    'cta.closing': '"Thank you for taking the time to get to know me. I\'d appreciate the opportunity to continue <em class="cta-em" style="font-weight:600">realizing my potential</em> and making a positive impact — and to share the <em class="cta-em">value</em> I can bring to you."',
+    'cta.footer':  'Anny Lin &nbsp;·&nbsp; Brand Marketing Portfolio &nbsp;·&nbsp; 2026'
+  },
+
+  /* ════════════════════════════════════════
+     中文翻譯
+  ════════════════════════════════════════ */
+  zh: {
+    /* ── Hero ─────────────────────────────── */
+    'hero.eyebrow': '品牌行銷作品集',
+    'hero.title':   '品牌與行銷專業',
+    'hero.desc':    '15 年品牌行銷經驗',
+    'hero.tags':    '產品上市 &nbsp;·&nbsp; 整合行銷傳播 &nbsp;·&nbsp; 數據驅動行銷 &nbsp;·&nbsp; 善用 AI 持續學習',
+    'hero.stat1':   '年資',
+    'hero.stat2':   '蕾黛絲品牌年輕消費者成長',
+    'hero.stat3':   '美吾華電商 ROI 成長',
+
+    /* ── Timeline ─────────────────────────── */
+    'tl.title': '職涯時間軸',
+    'tl.c1': '品類業績',
+    'tl.c2': '跨媒體',
+    'tl.c3': '電商 ROI',
+    'tl.c4': '年輕消費者',
+    'tl.role1': '品類管理',
+    'tl.role2': '業務執行',
+    'tl.role3': '行銷專員',
+    'tl.role4': '品牌行銷專員',
+    'tl.skills1': [
+      '統籌平台營運、促銷活動與用戶體驗優化',
+      '廠商 SEO、關鍵字、品牌與自有品牌管理',
+      '廣告版位談判，提升頁面瀏覽量與轉換率'
+    ],
+    'tl.skills2': [
+      '執行跨媒體廣告活動，涵蓋完整客戶服務週期',
+      '提案、時程規劃與客戶溝通',
+      '消費者行為分析，應用於 CRM 策略制定'
+    ],
+    'tl.skills3': [
+      '從零到一建立自有電商品牌——從產品定位到產品開發、包裝到行銷操作以及電商銷售',
+      '整合 KOL / FB / Google Ads / DSP 預算配置'
+    ],
+    'tl.skills4': [
+      '全漏斗 GTM 策略規劃與品牌活動主導',
+      'O2O：數位導流 → 門市轉換與賣場陳列',
+      '跨部門預算管理與媒體 ROI 優化'
+    ],
+
+    /* ── Case 1 ───────────────────────────── */
+    'c1.tag':   '案例 01',
+    'c1.title': 'LadieSport：<em>新品上市與行銷活動</em>',
+    'c1.desc':  '主導蕾黛絲運動系列商品上市，因市場漸漸傾向舒適＞機能，藉由此休閒機能商品開發新消費族群。系列商品的角色為站在既有的會員基礎上去服務現有會員的需求，同時藉由休閒運動趨勢新去接觸新客。',
+    'c1.p1h': '策略定位',
+    'c1.p1b': '以「胸部晃動穩定性」專業分級切入運動內衣市場，強化蕾黛絲「胸部內衣專家」差異化定位，以「跳出舒適圈，就有好身材」為溝通主軸，精準觸及 25–35 歲都會運動女性族群，同步拉升品牌認知與門市銷售轉換。',
+    'c1.p2h': '首次媒體串聯線上線下佈局',
+    'c1.p2b': 'Paid / Own / Earned 三層媒體矩陣（FB/IG 廣告、GDN、Yahoo 原生廣告、關鍵字）；以 KOL 體驗產品，到櫃直播產出真實體驗內容；規劃 PTT fitness 版與 FB 社群口碑論壇；製作代言人影片與線下 POSM 陳列，打通數位曝光至實體購買 O2O 轉換過程。',
+    'c1.p3h': '數據驅動優化',
+    'c1.p3b': '各店銷售率（STR）即時追蹤，使庫存與行銷資源可即時重新分配至 100+ 個零售據點。',
+    'c1.m1l': '銷售率（超越目標）',
+    'c1.m1n': '首波上市（4–7 月）的銷售表現，大幅超越內部預期目標。',
+    'c1.m2l': '內衣重訂量年成長',
+    'c1.m2n': '內衣重訂量年增 +18%，商品表現超出所有預期。',
+    'c1.m3l': '線上線下銷售雙贏',
+    'c1.m3n': '將 digital media 結合線下體驗，同時滿足線上線下 sales 需求，串聯線上下達成 O2O 轉換。',
+
+    /* ── Case 2 ───────────────────────────── */
+    'c2.tag':   '案例 02',
+    'c2.title': 'Summer White：<em>Pop-Up Store與數位行銷活動</em>',
+    'c2.desc':  '搭配新科技產品、不發黃材質，推出夏日白色內衣主題活動，整合線上線下活動，並在線上動員百位 KOC 打造一片白色浪潮，搶佔 IG #SummerWhite，同時攻入年輕族群。',
+    'c2.p1h': '快閃店策略',
+    'c2.p1b': '沉浸式零售體驗：趣味拍照道具結合商品陳列、試穿迎賓禮，結合抽獎活動，連結品牌與銷售。',
+    'c2.p2h': 'KOL 金字塔策略',
+    'c2.p2b': '四層網紅策略：Super Star → Macro KOL（Heaven Raven）→ 百位 KOC 微網紅 → Hashtag 社群擴散。',
+    'c2.p3h': '社群聲量工程',
+    'c2.p3b': '結合市場數據——粉絲數一萬左右的 KOL 互動與擴散效果最好，以「Tell Me White」為起點結合趣味口號：#解放性感基因White起來、#white white惹人愛 … 等，搭配有說服力的 KOL 為產品背書，以及懂得用年輕人語言溝通且影響力高的社群媒體。',
+    'c2.b1l': '流量超標',
+    'c2.b1d': '整合線上線下活動且在有限預算內流量超達成。',
+    'c2.b2l': '網紅人數',
+    'c2.b2d': '百位 KOC 網紅，搭配 Macro KOL，完整覆蓋金字塔各層。',
+    'c2.b4l': '主打商品',
+    'c2.b4v': '8 週銷售冠軍',
+    'c2.b4d': 'Summer White 白色內衣蝉聯 8 週正品內衣銷售冠軍 。',
+    'c2.b5l': '策略洞察',
+    'c2.b5d': '整合線上線下行銷活動，在有限的預算內流量 <strong>+13% YoY</strong>。識別 <strong>Blokette 時尚趨勢</strong>（Blokecore × Coquette）作為白色內衣活動的文化切角——讓蕾黛絲的品牌定位與社群話題精準交疊。',
+
+    /* ── Case 3 ───────────────────────────── */
+    'c3.tag':   '案例 03',
+    'c3.title': 'AnnCam 活動：<em>全通路媒體整合</em>',
+    'c3.desc':  '主導蕾黛絲明星商品「真水內衣」的 AW25 全漏斗媒體行銷活動。面對集團全球預算縮減，透過將 KV 製作費策略性轉移至媒體投放，在資源受限下實現曝光擴大，達成 3,700 萬次以上觸及與跨平台新客開發。',
+    'c3.p1h': '電視 × 數位整合',
+    'c3.p1b': '黃金時段節目置入（結合週慶大點首波開打日），搭配 YouTube、Meta 精華影片及媒體廣編稿多平台放大——電視觸及延伸為數位轉換。',
+    'c3.p2h': '8 位 KOL · 真實電商帶貨',
+    'c3.p2b': 'IG Reels + 限動 + Podcast——結合產品故事、EC 購物連結與線下折扣碼，打通線上線下消費路徑。',
+    'c3.p3h': '數據驅動新客開發',
+    'c3.p3b': '整合 91APP 零售數據 + Appier AI + Spectrum DMP + CRM LAL，所有受眾均排除現有買家，最大化新客開發效率。',
+    'c3.f1n': '品牌認知 — 43%',
+    'c3.f1d': 'LINE 跨屏廣告 · 電視置入 · TVC 精華版',
+    'c3.f2n': '興趣考量 — 26%',
+    'c3.f2d': '8 位 KOL · IG Reels + 限動 + Podcast',
+    'c3.f3n': '轉換行動 — 32%',
+    'c3.f3d': 'Appier · Spectrum · 91APP RMN · FB/IG 導購廣告',
+    'c3.r1': '全台 25-44 女性 1+Reach',
+    'c3.r2': '全台 25–44 女性 1+ Reach',
+    'c3.r3': 'LINE 桌機版位 8 小時內曝光',
+    'c3.r4': 'KOL 在自然流量階段即達成直接銷售轉換',
+    'c3.kol.title': 'KOL 團購電商',
+    'c3.kol.s1': 'EC 通路新客佔比',
+    'c3.kol.desc': '團購能有效帶來新客 — EC 通路購買者中 <strong>72% 為首次購買的新客</strong>，驗證 KOL 電商團購是高效的新客獲取通路。',
+    'c3.budget': '<strong>預算與檔期策略：</strong>面對全球媒體預算縮減 10%，將 KV 製作費策略性轉移至媒體投放，實際降幅壓縮至僅 -5%；流量達成超標 +13% YoY，並配合周慶首波大櫃開打時間播出。',
+
+    /* ── Testimonial ──────────────────────── */
+    't.eyebrow': '推薦評語',
+    't.title':   '<em>他們這樣說</em>',
+    't.quote':   'Anny 是一個勇於嘗試且尋求突破的人。謝謝你不斷地學習，為品牌帶來更多新可能。',
+    't.role':    '蕾黛絲 Ladies® 前品牌經理 · 直屬主管 at Triumph Group',
+
+    /* ── CTA ──────────────────────────────── */
+    'cta.eyebrow': '與我聯繫',
+    'cta.heading': '準備好一起 <em>打造精彩了嗎？</em>',
+    'cta.sub':     '無論你需要的是品牌策略師、創意問題解決者，還是兼具數據思維與直覺的行銷人——我很期待和你聊聊。',
+    'cta.btn':     '寫信給我 — anny72905891@gmail.com',
+    'cta.closing': '"感謝你花時間認識我。我期待有機會繼續<em class="cta-em" style="font-weight:600">實現自己的潛能</em>，並創造正面的影響——並將我能帶來的<em class="cta-em">價值</em>分享給你。"',
+    'cta.footer':  '林琬瑩 &nbsp;·&nbsp; 品牌行銷作品集 &nbsp;·&nbsp; 2026'
+  }
+};
+
+/* ════════════════════════════════════════════
+   LANGUAGE ENGINE — do not edit below
+════════════════════════════════════════════ */
+let currentLang = 'zh';
+try { const stored = localStorage.getItem('portfolio-lang'); if (stored === 'en' || stored === 'zh') currentLang = stored; } catch(e) {}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('portfolio-lang', lang);
+
+  // Toggle button state
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+
+  const t = i18n[lang];
+
+  // Plain text / HTML nodes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Skill list nodes
+  document.querySelectorAll('[data-i18n-list]').forEach(ul => {
+    const key = ul.getAttribute('data-i18n-list');
+    if (!t[key]) return;
+    ul.innerHTML = t[key].map(s => `<li>${s}</li>`).join('');
+  });
+
+  // html lang attribute
+  document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'en';
+}
+
+// Init on load
+setLang(currentLang);
+
+/* ── Navigation ──────────────────────────── */
+const sections = Array.from(document.querySelectorAll('section'));
+const dots     = Array.from(document.querySelectorAll('.nav-dot'));
+const bar      = document.getElementById('progressBar');
+
+function goTo(i) { sections[i].scrollIntoView({ behavior: 'smooth' }); }
+
+function onScroll() {
+  const el     = document.documentElement;
+  const scroll = el.scrollTop || document.body.scrollTop;
+  const total  = el.scrollHeight - el.clientHeight;
+  bar.style.width = (total > 0 ? (scroll / total) * 100 : 0) + '%';
+  let active = 0;
+  sections.forEach((s, i) => {
+    if (s.getBoundingClientRect().top <= window.innerHeight / 2) active = i;
+  });
+  dots.forEach((d, i) => d.classList.toggle('active', i === active));
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+document.documentElement.addEventListener('scroll', onScroll, { passive: true });
+
+/* ── Animate metric bars ─────────────────── */
+const animBars = document.querySelectorAll('.animate-bar');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.width = (e.target.dataset.width || 70) + '%';
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+animBars.forEach(b => io.observe(b));
+</script>
+</body>
+</html>
